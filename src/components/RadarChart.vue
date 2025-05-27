@@ -1,5 +1,7 @@
 <template>
+<ion-card-title>Porcentaje final del desarrollo de las funcionalidades</ion-card-title>
   <div ref="chart" class="radar-chart"></div>
+  
 </template>
 
 <script setup lang="ts">
@@ -12,7 +14,7 @@ onMounted(() => {
   const options = {
     series: [{
       name: 'Porcentaje completado',
-      data: [100, 100, 100, 0, 70]
+      data: [100, 100, 100, 30, 80]
     }],
     chart: {
       height: 350,
@@ -45,7 +47,7 @@ onMounted(() => {
     },
     markers: {
       size: 5,
-      colors: ['#fff'],
+      colors: ['#4324fe'],
       strokeWidth: 2
     },
     xaxis: {
