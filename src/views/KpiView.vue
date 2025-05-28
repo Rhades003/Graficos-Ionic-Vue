@@ -155,14 +155,8 @@
 import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonMenu, IonMenuButton, IonButtons, IonList, IonItem, IonLabel, IonIcon,
-  IonGrid, IonRow, IonCol
 } from '@ionic/vue';
 import { barChartOutline, pieChartOutline, trendingUpOutline } from 'ionicons/icons';
-import BigNumber from '@/components/BigNumber.vue';
-import BarChart from '@/components/BarChart.vue';
-import TimelineChart from '@/components/TimeLineChart.vue';
-import RadarChart from '@/components/RadarChart.vue';
-import DonutChart from '@/components/DonutChart.vue';
 
 </script>
 
@@ -187,4 +181,5 @@ ion-badge {
   float: right;
   margin-top: 10px;
 }
+
 </style>
