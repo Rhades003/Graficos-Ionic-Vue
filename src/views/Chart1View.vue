@@ -19,17 +19,17 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item href="/home">
-            <ion-icon :icon="barChartOutline" slot="start" ></ion-icon>
-            <ion-label>Gráficos de Barras</ion-label>
+          <ion-item href="/chart1">
+            <ion-icon :icon="barChartOutline" slot="start"></ion-icon>
+            <ion-label>Gráficos aspectos internos</ion-label>
           </ion-item>
-          <ion-item href="/page2">
-            <ion-icon :icon="pieChartOutline" slot="start" ></ion-icon>
-            <ion-label>Gráficos Circulares</ion-label>
+          <ion-item href="/chart2">
+            <ion-icon :icon="pieChartOutline" slot="start"></ion-icon>
+            <ion-label>Gráficos aspectos externos</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-item href="/kpi">
             <ion-icon :icon="trendingUpOutline" slot="start"></ion-icon>
-            <ion-label>Gráficos de Área</ion-label>
+            <ion-label>KPI's</ion-label>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -38,11 +38,16 @@
     <!-- Contenido principal -->
     <ion-content id="main-content">
       <ion-grid>
-        <!-- Gráfico animado en vivo -->
+
         <ion-row>
-          <ion-col size="12">
-            <div class="chart-container live-chart">
-              <live-animated-chart />
+          <ion-col size="12" size-md="6">
+            <div class="chart-container">
+              <DonutChart />
+            </div>
+          </ion-col>
+          <ion-col size="12" size-md="6">
+            <div class="chart-container">
+              <RadarChart />
             </div>
           </ion-col>
         </ion-row>
@@ -51,7 +56,7 @@
         <ion-row>
           <ion-col size="12" size-md="6">
             <div class="chart-container">
-              <bar-chart />
+              <BigNumber title="Modelos 3D totales" :value="1025" prefix="" :decimals="0" :trendValue="146" />
             </div>
           </ion-col>
           <ion-col size="12" size-md="6">
@@ -64,7 +69,7 @@
         <ion-row>
           <ion-col size="12">
             <div class="chart-container">
-              <radar-chart />
+              <bar-chart />
             </div>
           </ion-col>
         </ion-row>
@@ -74,17 +79,18 @@
 </template>
 
 <script setup lang="ts">
-import { 
+import {
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonMenu, IonMenuButton, IonButtons, IonList, IonItem, IonLabel, IonIcon,
-  IonGrid, IonRow, IonCol 
+  IonGrid, IonRow, IonCol
 } from '@ionic/vue';
 import { barChartOutline, pieChartOutline, trendingUpOutline } from 'ionicons/icons';
-
-import LiveAnimatedChart from '@/components/LiveAnimatedChart.vue';
+import BigNumber from '@/components/BigNumber.vue';
 import BarChart from '@/components/BarChart.vue';
 import TimelineChart from '@/components/TimeLineChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
+import DonutChart from '@/components/DonutChart.vue';
+
 </script>
 
 <style scoped>
@@ -107,9 +113,17 @@ import RadarChart from '@/components/RadarChart.vue';
 
 /* Animación de fondo para el gráfico en vivo */
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Espaciado entre filas */
