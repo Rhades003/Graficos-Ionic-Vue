@@ -1,12 +1,39 @@
 <template>
-<ion-card-title>Porcentaje final del desarrollo de las funcionalidades</ion-card-title>
+  <ion-card-title>{{ title }}</ion-card-title>
   <div ref="chart" class="radar-chart"></div>
-  
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import ApexCharts from 'apexcharts';
+
+// Definición de props
+const props = defineProps({
+  title: {
+    type: String,
+    default: 'Porcentaje final del desarrollo de las funcionalidades'
+  },
+  seriesData: {
+    type: Array as () => number[],
+    default: () => [100, 100, 100, 30, 80]
+  },
+  categories: {
+    type: Array as () => string[],
+    default: () => ['Detalle Pokemon', 'C. efectividades', 'Pokedex', 'TeamBuilder', 'Mercado Pokemon']
+  },
+  color: {
+    type: String,
+    default: '#FF4560'
+  },
+  height: {
+    type: Number,
+    default: 350
+  },
+  maxValue: {
+    type: Number,
+    default: 100
+  }
+});
 
 const chart = ref(null);
 
@@ -14,10 +41,10 @@ onMounted(() => {
   const options = {
     series: [{
       name: 'Porcentaje completado',
-      data: [100, 100, 100, 30, 80]
+      data: props.seriesData
     }],
     chart: {
-      height: 350,
+      height: props.height,
       type: 'radar',
       animations: {
         enabled: true,
@@ -36,14 +63,14 @@ onMounted(() => {
         show: false
       }
     },
-    colors: ['#FF4560'],
+    colors: [props.color],
     stroke: {
       width: 2,
-      colors: ['#FF4560']
+      colors: [props.color]
     },
     fill: {
       opacity: 0.3,
-      colors: ['#FF4560']
+      colors: [props.color]
     },
     markers: {
       size: 5,
@@ -51,10 +78,10 @@ onMounted(() => {
       strokeWidth: 2
     },
     xaxis: {
-      categories: ['Detalle Pokemon', 'C. efectividades', 'Pokedex', 'TeamBuilder', 'Mercado Pokemon'],
+      categories: props.categories,
       labels: {
         style: {
-          colors: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff'],
+          colors: props.categories.map(() => '#fff'),
           fontSize: '14px',
           fontFamily: 'Arial'
         }
@@ -63,7 +90,7 @@ onMounted(() => {
     yaxis: {
       show: false,
       min: 0,
-      max: 100,
+      max: props.maxValue,
       tickAmount: 5
     },
     plotOptions: {
@@ -80,7 +107,7 @@ onMounted(() => {
       theme: 'dark',
       y: {
         formatter: function(val: number) {
-          return val + '/100';
+          return val + '/' + props.maxValue;
         }
       }
     }
@@ -94,6 +121,6 @@ onMounted(() => {
 <style scoped>
 .radar-chart {
   width: 100%;
-  height: 350px;
+  height: v-bind('height + "px"');
 }
 </style>

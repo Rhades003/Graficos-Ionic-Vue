@@ -6,7 +6,7 @@
     </ion-card-header>
     <ion-card-content class="ion-text-center">
       <div class="big-number" :style="{ color: color }">
-        {{ formattedValue }} Pokes
+        {{ formattedValue }} {{ entity }}
       </div>
       <div class="trend-indicator" v-if="showTrend">
         <ion-icon 
@@ -26,19 +26,23 @@
 <script setup lang="ts">
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonIcon } from '@ionic/vue';
 import { arrowUp, arrowDown, remove } from 'ionicons/icons';
-import { computed } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
   title: {
     type: String,
     default: 'Total Ventas'
   },
+  entity: {
+    type: String,
+    default: ''
+  },
   subtitle: {
     type: String,
     default: 'Al final del plazo (6 mes)'
   },
-  value: {
-    type: Number,
+  values: {
+    type: Array as () => number[],
     required: true
   },
   color: {
@@ -71,9 +75,13 @@ const props = defineProps({
   }
 });
 
+const currentIndex = ref(0);
+
+const currentValue = computed(() => props.values[currentIndex.value] ?? 0);
+
 const formattedValue = computed(() => {
   return props.prefix + 
-         props.value.toLocaleString(undefined, { maximumFractionDigits: props.decimals }) + 
+         currentValue.value.toLocaleString(undefined, { maximumFractionDigits: props.decimals }) + 
          props.suffix;
 });
 
@@ -91,6 +99,18 @@ const trendColor = computed(() => {
   if (props.trendValue > 0) return 'success';
   if (props.trendValue < 0) return 'danger';
   return 'medium';
+});
+
+let intervalId: ReturnType<typeof setInterval>;
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % props.values.length;
+  }, 2000);
+});
+
+onUnmounted(() => {
+  clearInterval(intervalId);
 });
 </script>
 

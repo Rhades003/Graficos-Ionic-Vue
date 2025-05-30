@@ -40,36 +40,32 @@
       <ion-grid>
 
         <ion-row>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
               <DonutChart />
             </div>
           </ion-col>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
               <RadarChart />
             </div>
           </ion-col>
-        </ion-row>
-
-        <!-- Segunda fila con 2 gráficos -->
-        <ion-row>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
-              <BigNumber title="Modelos 3D totales" :value="1025" prefix="" :decimals="0" :trendValue="146" />
-            </div>
-          </ion-col>
-          <ion-col size="12" size-md="6">
-            <div class="chart-container">
-              <timeline-chart />
+              <BigNumber title="Modelos 3D totales" :values="[1025, 1025, 1025, 1025]" prefix="" :decimals="0" :trendValue="146" :entity="'Pokemons'" />
             </div>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col size="12">
+          <ion-col size="10" size-md="6">
             <div class="chart-container">
               <bar-chart />
+            </div>
+          </ion-col>
+          <ion-col size="10" size-md="6">
+            <div class="chart-container">
+              <timeline-chart />
             </div>
           </ion-col>
         </ion-row>

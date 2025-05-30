@@ -40,36 +40,39 @@
       <ion-grid>
 
         <ion-row>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
-              <DonutChart />
+              <ProgressBar />
             </div>
           </ion-col>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
-              <RadarChart />
+              <RadarChart title="Progreso para el patrocinio de Nintendo" :series-data="[6, 4, 2, 6, 5]"
+                :categories="['Descargas totales', 'Puntuación', 'Politicas Nintendo', 'Funcionalidades', 'Idiomas']"
+                color="#00E396" :height="400" :max-value="6" />
             </div>
           </ion-col>
-        </ion-row>
-
-        <!-- Segunda fila con 2 gráficos -->
-        <ion-row>
-          <ion-col size="12" size-md="6">
+          <ion-col size="10" size-md="4">
             <div class="chart-container">
-              <BigNumber title="Modelos 3D totales" :value="1025" prefix="" :decimals="0" :trendValue="146" />
-            </div>
-          </ion-col>
-          <ion-col size="12" size-md="6">
-            <div class="chart-container">
-              <timeline-chart />
+              <BigNumber :values="[899998, 899994, 899999, 900002]"
+                title="Seguidores totales de Instagram, TikTok y Twitter" :value="1025" prefix="" :decimals="0"
+                :trendValue="146" :entity="'Seguidores'" />
             </div>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col size="12">
+          <ion-col size="10" size-md="6">
             <div class="chart-container">
-              <bar-chart />
+                <BarChartEchart />
+            </div>
+          </ion-col>
+          <ion-col size="10" size-md="6">
+            <div class="chart-container">
+              <TimelineChart title="Progreso de descargas"
+                :categories="['2024-02-01', '2024-04-01', '2024-06-01', '2024-08-01', '2024-10-01', '2024-12-01']"
+                :series-data="[8034, 24600, 86189, 403507, 857998, 999967]" series-name="Número de descargas"
+                color="#3a86ff" :height="350" />
             </div>
           </ion-col>
         </ion-row>
@@ -86,10 +89,11 @@ import {
 } from '@ionic/vue';
 import { barChartOutline, pieChartOutline, trendingUpOutline } from 'ionicons/icons';
 import BigNumber from '@/components/BigNumber.vue';
-import BarChart from '@/components/BarChart.vue';
+import ProgressBar from '@/components/ProgressChart.vue';
 import TimelineChart from '@/components/TimeLineChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
-import DonutChart from '@/components/DonutChart.vue';
+import BarChart from '@/components/BarChart.vue';
+import BarChartEchart from '@/components/BarChartEchart.vue';
 
 </script>
 
