@@ -90,24 +90,26 @@ import DonutChart from '@/components/DonutChart.vue';
 </script>
 
 <style scoped>
-/* Estilos para el contenedor de gráficos */
 .chart-container {
   background: #1E1E1E;
   border-radius: 8px;
-  padding: 16px;
-  height: 100%;
+  padding-right: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  height: 95%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
 }
 
-/* Contenedor especial para el gráfico animado */
+
 .live-chart {
   background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
   animation: gradientBG 15s ease infinite;
   background-size: 400% 400%;
 }
 
-/* Animación de fondo para el gráfico en vivo */
+
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;
@@ -122,20 +124,19 @@ import DonutChart from '@/components/DonutChart.vue';
   }
 }
 
-/* Espaciado entre filas */
 ion-row {
   margin-bottom: 16px;
 }
 
-/* Espaciado entre columnas */
+
 ion-col {
   padding: 8px;
 }
 
-/* Ajustes responsivos */
+
 @media (max-width: 768px) {
   .chart-container {
-    padding: 12px;
+    padding: 6px;
   }
 }
 </style>

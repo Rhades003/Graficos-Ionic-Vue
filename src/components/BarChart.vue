@@ -1,12 +1,10 @@
 <template>
-  <ion-card>
     <ion-card-header>
       <ion-card-title>{{ title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <apexchart type="bar" :height="height" :options="chartOptions" :series="chartSeries" />
     </ion-card-content>
-  </ion-card>
 </template>
 
 <script setup lang="ts">
